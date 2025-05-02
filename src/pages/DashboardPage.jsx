@@ -14,9 +14,9 @@ const dummyDashboardData = {
     name: "Ramesh Kumar",
   },
   stats: {
-    activePolicies: 1,
-    totalPremiumAmount: 1600,
-    totalAmountInsured: 16000,
+    activePolicies: 0,
+    totalPremiumAmount: 0,
+    totalAmountInsured: 0,
   },
   weatherAlerts: [
     {
@@ -34,11 +34,11 @@ const dummyDashboardData = {
   ],
   recentTransactions: [
     {
-      transactionId: "TXN-001",
-      type: "Premium Payment",
-      amount: 1600,
-      date: "2025-04-15",
-      status: "Paid",
+      transactionId: "",
+      type: "",
+      amount: 0,
+      date: "",
+      status: "",
     },
   ],
 };
