@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Poppins:wght@400;500;600;700&family=Lato:wght@400;700&family=Roboto+Condensed:wght@700&family=Open+Sans:wght@600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --primary: 270 30% 80%;
+    --secondary: 210 100% 90%;
+    --success: 150 50% 85%;
+    --warning: 50 100% 90%;
+    --error: 10 100% 90%;
+    --accent: 30 100% 90%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --primary: 270 30% 20%;
+    --secondary: 210 100% 20%;
+    --success: 150 50% 20%;
+    --warning: 50 100% 20%;
+    --error: 10 100% 20%;
+    --accent: 30 100% 20%;
+  }
+}
+
+@layer components {
+  .test-dark-mode {
+    @apply bg-blue-500 dark:bg-red-500;
+  }
+
+  .navbar {
+    @apply bg-white dark:bg-gray-900 shadow-lg dark:shadow-gray-800/50;
+  }
+
+  .nav-link {
+    @apply text-gray-600 hover:text-white dark:text-gray-300;
+  }
+
+  .nav-link-active {
+    @apply text-green-600 dark:text-green-400;
+  }
+
+  /* .card {
+    @apply bg-white/80 dark:bg-gray-800/80 shadow-lg dark:shadow-gray-800/50;
+  }
+
+  .feature-card {
+    @apply bg-white/80 dark:bg-gray-800/80 shadow-lg dark:shadow-gray-800/50;
+  }
+
+  .cta-section {
+    @apply bg-gradient-to-br from-gray-900 dark:from-gray-800 via-gray-800 dark:via-gray-700 to-black dark:to-gray-900;
+  } */
+
+  .footer {
+    @apply bg-gray-50 dark:bg-gray-900 text-gray-600 dark:text-gray-300;
+  }
+}
+
+body {
+  @apply bg-white dark:bg-neutral-900 text-gray-900 dark:text-neutral-100 transition-colors duration-200;
+}
+
+/* Font Classes */
+.font-heading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.font-subheading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.font-body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+.font-stats {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 700;
+}
+
+.font-nav {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+/* Existing styles */
+.shadow__btn {
+    padding: 10px 20px;
+    border: none;
+    font-size: 17px;
+    color: #fff;
+    border-radius: 100px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.5s;
+    transition-property: box-shadow;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.shadow__btn {
+    background:  rgb(18, 137, 62);
+}
+
+.shadow__btn:hover {
+    box-shadow: 0 0 5px rgb(74, 222, 128),
+        0 0 25px rgb(74, 222, 128),
+        0 0 50px rgb(74, 222, 128),
+        0 0 100px rgb(74, 222, 128);
+}
+
+.top_right {
+    clip-path: path("M 0,0 H 400 A 20, 20 0 0 1 420, 20 V 50 A 20, 20 0 0 0 440, 70 H 480 A 20, 20 0 0 1 500, 90 V 500 H 0 Z");
+}
+
+.top_left {
+    clip-path: path("M 200,0 H 70 A 20,20 0 0 0 50,20 V 25 A 15,15 0 0 1 35,40 H 20 A 20,20 0 0 0 0,60 V 120 H 200 Z");
+}
