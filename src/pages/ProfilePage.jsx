@@ -48,9 +48,9 @@ const ProfilePage = () => {
       console.log(response.data);
       setUser(response.data.profile);
       setLoading(false);
-      if (response.status == 401) {
-        navigate("/login");
-      }
+      // if (response.status == 401) {
+      //   navigate("/login");
+      // }
     } catch (error) {
       setLoading(false);
       if (error.status == 401) {

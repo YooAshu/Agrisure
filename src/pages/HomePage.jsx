@@ -19,6 +19,7 @@ import CtaSection from "../components/CtaSection";
 import BlurText from "../components/BlurText";
 import FAQSection from "../components/FAQSection";
 import { useAuth } from "../context/AuthContext.jsx";
+import FEATURES from "../assets/FEATURES.png";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -69,11 +70,11 @@ const HomePage = () => {
                   />
                 </span>
                 <br />
-                <span className="drop-shadow-[0_0_10px_rgba(255,255,255,0.4)] font-subheading text-white/90">
-                  With{" "}
-                  <span className="bg-green-700 dark:bg-green-600 backdrop-blur-sm px-2 py-1 rounded-md italic">
-                    Blockchain
-                  </span>
+                <span className="drop-shadow-[0_0_10px_rgba(255,255,255,0.4)] text-white/90 text-5xl">
+                  With{" "}Blockchain
+                  {/* <span className="bg-green-700 dark:bg-green-600 backdrop-blur-sm px-2 py-1 rounded-md italic">
+                   
+                  </span> */}
                   -Powered Insurance
                 </span>
               </h1>
@@ -177,6 +178,13 @@ const HomePage = () => {
       {/* Features Section */}
       <FeaturesSection />
 
+      <div className="relative flex justify-center items-center dark:bg-neutral-900 min-h-screen overflow-hidden">
+        <img
+          src={FEATURES}
+          alt="Farm background"
+          className="w-full h-full object-cover"
+        />
+      </div>
       {/* Testimonials Section */}
       <TestimonialsSection />
 

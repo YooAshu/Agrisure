@@ -175,6 +175,51 @@ const PremiumCalculation = ({ formData, policyOptions }) => {
 };
 
 const PolicySuccessDetails = ({ policyData, cropOptions, onNavigate }) => {
+  const [isDownloading, setIsDownloading] = useState(false);
+  
+  const downloadCertificate = async () => {
+    try {
+      setIsDownloading(true);
+      if (!policyData || !policyData.policy_num) {
+        console.error("Policy data is missing or invalid.");
+        setIsDownloading(false);
+        return;
+      }
+  
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_BASE_URL}/insurance/certificate/${policyData.policy_num}`,
+        {
+          responseType: "blob",
+          withCredentials: true,
+        }
+      );
+  
+      const blob = new Blob([response.data], { type: "application/pdf" });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+  
+      const fullName = policyData.full_name
+        ? policyData.full_name.replace(/\s/g, "")
+        : "Farmer";
+  
+      link.download = `Insurance_${fullName}${policyData.policy_num}.pdf`;
+  
+      document.body.appendChild(link);
+      link.click();
+  
+      window.URL.revokeObjectURL(url);
+      link.remove();
+      
+      setTimeout(() => {
+        setIsDownloading(false);
+      }, 500);
+    } catch (error) {
+      console.error("Error downloading certificate:", error);
+      setIsDownloading(false);
+    }
+  };
+
   return (
     <div>
       <h2 className="mb-6 font-semibold text-gray-900 dark:text-neutral-100 text-xl">
@@ -183,7 +228,8 @@ const PolicySuccessDetails = ({ policyData, cropOptions, onNavigate }) => {
       <div className="bg-green-50 dark:bg-green-900/20 p-4 border border-green-200 dark:border-green-800 rounded-lg">
         <h3 className="mb-2 font-semibold text-lg">Policy Details</h3>
         <p>
-          <span className="font-medium">Policy ID:</span> {policyData.policy_num}
+          <span className="font-medium">Policy ID:</span>{" "}
+          {policyData.policy_num}
         </p>
         <p>
           <span className="font-medium">Crop Type:</span>{" "}
@@ -213,12 +259,26 @@ const PolicySuccessDetails = ({ policyData, cropOptions, onNavigate }) => {
           </span>
         </p>
       </div>
-      <Button
-        onClick={onNavigate}
-        className="bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 mt-6"
-      >
-        Go to Dashboard
-      </Button>
+      <div className="flex justify-between gap-7">
+        <Button
+          onClick={onNavigate}
+          className="bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 mt-6"
+        >
+          Go to Dashboard
+        </Button>
+        <Button
+          onClick={() => downloadCertificate()}
+          className="bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 mt-6"
+          disabled={isDownloading}
+        >
+          {isDownloading ? (
+            <div className="flex justify-center items-center">
+              <LoadingSpinner size="sm" className="mr-2" />
+              <span>Downloading...</span>
+            </div>
+          ) : "Download Policy Document"}
+        </Button>
+      </div>
     </div>
   );
 };
@@ -437,6 +497,22 @@ const BuyInsurancePage = () => {
   const prevStep = () => {
     setStep(step - 1);
   };
+  const downloadCertificate = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_BASE_URL}/insurance/certificate/${
+          policyData.policy_num
+        }`,
+        {
+          responseType: "blob", // Set response type to blob
+          withCredentials: true,
+        }
+      );
+      const blob = new Blob([response.data], { type: "application/pdf" });
+    } catch (error) {
+      console.error("Error downloading certificate:", error);
+    }
+  };
 
   // Function to send API request after payment
   const sendInsuranceData = async (policyData) => {
@@ -451,7 +527,7 @@ const BuyInsurancePage = () => {
           withCredentials: true,
         }
       );
-      
+
       console.log(response.data);
 
       // const apiUrl = 'https://api.example.com/insurance/policies'; // Replace with your actual API endpoint
