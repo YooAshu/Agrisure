@@ -8,11 +8,13 @@ import ToastNotification from "../components/ToastNotification";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
+import LoadingOverlay from "../components/LoadingOverlay.jsx";
 
 const ProfilePage = () => {
   const [notification, setNotification] = useState(null);
   const [user, setUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { isLoggedIn, logout } = useAuth();
 
   const {
@@ -36,17 +38,21 @@ const ProfilePage = () => {
   const navigate = useNavigate();
 
   const fetchUserProfile = async () => {
+    setLoading(true);
     try {
+      
       const response = await axios.get(
         `${import.meta.env.VITE_BACKEND_BASE_URL}/farmer/profile`,
         { withCredentials: true }
       );
       console.log(response.data);
       setUser(response.data.profile);
+      setLoading(false);
       if (response.status == 401) {
         navigate("/login");
       }
     } catch (error) {
+      setLoading(false);
       if (error.status == 401) {
         navigate("/login");
         logout();
@@ -109,6 +115,7 @@ const ProfilePage = () => {
 
   return (
     <div className="flex flex-col bg-gradient-to-br from-primary-50 dark:from-neutral-900 via-white dark:via-neutral-800 to-secondary-50 dark:to-neutral-950 min-h-screen">
+      <LoadingOverlay isLoading={loading} />
       <Navbar isLoggedIn={true} />
 
       {notification && (
