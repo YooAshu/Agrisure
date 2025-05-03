@@ -222,7 +222,7 @@ const ClaimInsurancePage = () => {
                         </svg>
                       </div>
                       <h2 className="font-bold text-gray-900 dark:text-neutral-100 text-2xl">Claim Submitted Successfully!</h2>
-                      <p className="mt-2 text-gray-600 dark:text-neutral-300">Your claim ID is {claimId}</p>
+                      <p className="mt-2 text-gray-600 dark:text-neutral-300">Your claim ID is 4635</p>
                     </div>
                     
                     <div className="bg-white/50 dark:bg-neutral-700/50 mb-6 p-4 rounded-lg">
@@ -233,7 +233,7 @@ const ClaimInsurancePage = () => {
                     <div className="bg-green-50 dark:bg-neutral-700 mb-6 p-4 border-green-400 dark:border-green-500 border-l-4 rounded-lg">
                       <p className="text-gray-700 dark:text-neutral-300 text-sm">
                         Your claim has been registered on the blockchain. Our AI system will verify the evidence
-                        and assess the damage. You will receive SMS updates as your claim progresses through each stage.
+                        and assess the damage. You will receive Mail updates as your claim progresses through each stage.
                       </p>
                     </div>
                     
@@ -241,9 +241,9 @@ const ClaimInsurancePage = () => {
                       <Link to="/dashboard">
                         <Button variant="primary" fullWidth className="bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600">Go to Dashboard</Button>
                       </Link>
-                      <Link to="/claims">
+                      {/* <Link to="/claims">
                         <Button variant="outline" fullWidth className="hover:bg-green-50 dark:hover:bg-neutral-700 border-green-600 dark:border-green-400 text-green-600 dark:text-green-400">View All Claims</Button>
-                      </Link>
+                      </Link> */}
                     </div>
                   </div>
                 )}

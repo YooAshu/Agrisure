@@ -31,7 +31,7 @@ const PolicyCard = ({ policy, selectedPolicy, onSelect }) => {
   const premiumRateNumber = parseFloat(policy.premiumRate.replace("%", ""));
 
   // Calculate premium per acre
-  const premiumPerAcre = (policy.sumInsured * premiumRateNumber) / 100;
+  const premiumPerAcre = (policy.sumInsured);
 
   return (
     <div
@@ -60,7 +60,7 @@ const PolicyCard = ({ policy, selectedPolicy, onSelect }) => {
           </h3>
         </div>
         <span className="font-bold text-green-600 dark:text-green-400">
-          ₹{premiumPerAcre.toFixed(2)}/acre
+          ₹{premiumPerAcre}/acre
         </span>
       </div>
       <div className="ml-7">

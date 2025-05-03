@@ -54,7 +54,7 @@ export const insuranceSchemes = [
     description:
       "Covers crop losses due to natural calamities, pests, and diseases.",
     premiumRate: "2%",
-    sumInsured: 20230, // 50000 / 2.471
+    sumInsured: 2023, // 50000 / 2.471
     eligibility: "All farmers growing notified crops in notified areas",
     duration: "Kharif & Rabi seasons",
     coverage: ["Drought", "Flood", "Hailstorm", "Pest attack"],
@@ -65,7 +65,7 @@ export const insuranceSchemes = [
     description:
       "Provides insurance against adverse weather conditions affecting crops.",
     premiumRate: "1.5%",
-    sumInsured: 12140, // 30000 / 2.471
+    sumInsured: 1214, // 30000 / 2.471
     eligibility: "Farmers with weather-sensitive crops",
     duration: "Seasonal (Kharif/Rabi)",
     coverage: [
@@ -81,7 +81,7 @@ export const insuranceSchemes = [
     description:
       "Covers fruit and vegetable crops against natural calamities and pest attacks.",
     premiumRate: "5%",
-    sumInsured: 30340, // 75000 / 2.471
+    sumInsured: 3034, // 75000 / 2.471
     eligibility: "Horticulture farmers",
     duration: "Per season",
     coverage: ["Flood", "Pest", "Disease", "Storms"],
@@ -92,7 +92,7 @@ export const insuranceSchemes = [
     description:
       "Covers crop losses along with additional benefits like personal accident and life insurance for farmers.",
     premiumRate: "2.5%",
-    sumInsured: 24270, // 60000 / 2.471
+    sumInsured: 2427, // 60000 / 2.471
     eligibility: "Farmers growing notified crops in notified areas",
     duration: "Kharif & Rabi seasons",
     coverage: ["Drought", "Flood", "Cyclone", "Pest attack"],
@@ -103,7 +103,7 @@ export const insuranceSchemes = [
     description:
       "Provides comprehensive coverage for crop losses due to natural calamities and pest attacks.",
     premiumRate: "3%",
-    sumInsured: 22250, // 55000 / 2.471
+    sumInsured: 2225, // 55000 / 2.471
     eligibility: "All farmers with insured crops",
     duration: "Seasonal (Kharif/Rabi)",
     coverage: ["Drought", "Flood", "Hailstorm", "Pest attack"],
@@ -114,7 +114,7 @@ export const insuranceSchemes = [
     description:
       "Specialized insurance for horticulture crops against natural calamities and diseases.",
     premiumRate: "4%",
-    sumInsured: 32380, // 80000 / 2.471
+    sumInsured: 3238, // 80000 / 2.471
     eligibility: "Horticulture farmers",
     duration: "Per season",
     coverage: ["Flood", "Pest", "Disease", "Storms"],
