@@ -87,16 +87,17 @@ const ProfilePage = () => {
     console.log(data);
 
     try {
-      // const response = await axios.post(
-      //   `${import.meta.env.VITE_BACKEND_BASE_URL}/farmer/update-profile`,
-      //   {
-      //     full_name: data.full_name,
-      //     Address: data.Address,
-      //     language_pref: data.language_pref,
-      //     upi_id: data.upi_id,
-      //   }
-      // );
-      // console.log(response.data);
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_BASE_URL}/farmer/update-profile`,
+        {
+          full_name: data.full_name,
+          address: data.address,
+          language_pref: data.language_pref,
+          upi_id: data.upi_id,
+          phone:data.phone
+        }
+      );
+      console.log(response.data);
       setNotification({
         type: "success",
         message: "Profile updated successfully!",
@@ -259,6 +260,16 @@ const ProfilePage = () => {
               })}
               defaultValue={user.Address}
               placeholder={`${user.Address}`}
+              className="bg-transparent p-3 border border-[#717171] rounded-lg text-white"
+            />
+            <label className="text-white">New Phone number</label>
+            <input
+              type="number"
+              {...register("phone", {
+                required: "phone is required",
+              })}
+              defaultValue={user.phone}
+              placeholder={`${user.phone}`}
               className="bg-transparent p-3 border border-[#717171] rounded-lg text-white"
             />
 

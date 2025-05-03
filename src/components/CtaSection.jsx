@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Sparkles, Zap, Shield } from "lucide-react";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const CtaSection = () => {
   const sectionRef = useRef(null);
@@ -12,8 +14,8 @@ const CtaSection = () => {
 
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
-
-
+  const navigate = useNavigate();
+  const { isLoggedIn, logout } = useAuth();
   return (
     <section
       ref={sectionRef}
@@ -22,7 +24,10 @@ const CtaSection = () => {
       {/* Animated background patterns */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/440731/pexels-photo-440731.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')] bg-cover bg-center " />
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 brighn" style={{backdropFilter:"brightness(.4)"}} />
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 brighn"
+          style={{ backdropFilter: "brightness(.4)" }}
+        />
       </div>
 
       <div className="relative mx-auto px-6 container">
@@ -109,6 +114,14 @@ const CtaSection = () => {
 
               <button
                 type="submit"
+                onClick={() => {
+                  if (isLoggedIn) {
+                    navigate("buy-insurance");
+                  }
+                  else{
+                    navigate("/login")
+                  }
+                }}
                 class="group before:-left-full before:hover:left-0 z-10 before:-z-10 isolation-auto before:absolute relative flex justify-center items-center gap-2 bg-gray-50 before:bg-emerald-500 shadow-xl backdrop-blur-md mx-auto px-4 py-2 border-2 border-gray-50 rounded-full before:rounded-full before:hover:w-full before:w-full before:aspect-square overflow-hidden lg:font-semibold text-black hover:text-gray-50 text-lg before:hover:scale-150 before:transition-all before:duration-700 before:hover:duration-700"
               >
                 Get Started Now

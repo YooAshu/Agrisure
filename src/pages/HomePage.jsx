@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Farmer from "../assets/farm-hero.png";
 import {
@@ -17,14 +17,17 @@ import FeaturesSection from "../components/FeaturesSection";
 import TestimonialsSection from "../components/TestimonialsSection";
 import CtaSection from "../components/CtaSection";
 import BlurText from "../components/BlurText";
-import FAQSection from '../components/FAQSection';
+import FAQSection from "../components/FAQSection";
+import { useAuth } from "../context/AuthContext.jsx";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const containerRef = useRef();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
+  const { isLoggedIn, logout } = useAuth();
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
@@ -42,9 +45,9 @@ const HomePage = () => {
         {/* Background Image */}
         <div className="absolute inset-0">
           <div className="relative rounded-b-[30px] w-full h-full overflow-hidden">
-            <img 
-              src={Farmer} 
-              alt="Farm background" 
+            <img
+              src={Farmer}
+              alt="Farm background"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-[2px]" />
@@ -67,9 +70,11 @@ const HomePage = () => {
                 </span>
                 <br />
                 <span className="drop-shadow-[0_0_10px_rgba(255,255,255,0.4)] font-subheading text-white/90">
-                  With <span className="bg-green-700 dark:bg-green-600 backdrop-blur-sm px-2 py-1 rounded-md italic">
+                  With{" "}
+                  <span className="bg-green-700 dark:bg-green-600 backdrop-blur-sm px-2 py-1 rounded-md italic">
                     Blockchain
-                  </span>-Powered Insurance
+                  </span>
+                  -Powered Insurance
                 </span>
               </h1>
               <p className="mb-8 font-body text-white/80 text-xl">
@@ -88,7 +93,13 @@ const HomePage = () => {
               <Button
                 size="lg"
                 className="shadow__btn"
-                onClick={() => navigate("/buy-insurance")}
+                onClick={() => {
+                  if (isLoggedIn) {
+                    navigate("/buy-insurance");
+                  } else {
+                    navigate("/login");
+                  }
+                }}
               >
                 Buy Insurance
               </Button>
@@ -97,9 +108,15 @@ const HomePage = () => {
                 variant="outline"
                 className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border-white text-white"
                 style={{ borderRadius: "100px" }}
-                onClick={() => navigate("/track-claims")}
+                onClick={() => {
+                  if (isLoggedIn) {
+                    navigate("/claims");
+                  } else {
+                    navigate("/login");
+                  }
+                }}
               >
-                Track Your Claims
+                Claim insurance
               </Button>
             </motion.div>
 
@@ -124,7 +141,9 @@ const HomePage = () => {
                 <div className="mb-2 font-stats text-green-600 dark:text-green-400 text-3xl">
                   98%
                 </div>
-                <div className="font-body text-gray-600 dark:text-neutral-300">Claim Success Rate</div>
+                <div className="font-body text-gray-600 dark:text-neutral-300">
+                  Claim Success Rate
+                </div>
               </motion.div>
 
               <motion.div
@@ -142,7 +161,9 @@ const HomePage = () => {
                 <div className="mb-2 font-stats text-green-600 dark:text-green-400 text-3xl">
                   24h
                 </div>
-                <div className="font-body text-gray-600 dark:text-neutral-300">Average Payout Time</div>
+                <div className="font-body text-gray-600 dark:text-neutral-300">
+                  Average Payout Time
+                </div>
               </motion.div>
 
               {/* Decorative background for stats */}

@@ -45,7 +45,7 @@ const InsuranceCard = ({ scheme }) => {
         <DetailBox
           icon={IndianRupee}
           label="Sum Insured"
-          value={scheme.sumInsured}
+          value={`${scheme.sumInsured} ₹/acre`}
           color="text-green-600"
         />
         <DetailBox
